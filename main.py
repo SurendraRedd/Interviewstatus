@@ -109,14 +109,18 @@ def main():
         st.session_state.interview_data = pd.concat([st.session_state.interview_data, new_entry], ignore_index=True)
         save_data_to_csv(new_entry)
 
-    # Display the table of interview data on the main page
-    st.write("### 📊 Data")
-    st.dataframe(st.session_state.interview_data.style.apply(lambda x: ['background-color: rgba(152, 251, 152, 0.3)' if x.Status == 'Cleared' else 'background-color: rgba(255, 192, 203, 0.3)' if x.Status == 'Rejected' else 'background-color: None' for i in x], axis=1))
-    with st.expander("See explanation"):
-        st.write("Above Table provides the details of the interviews.")
+    tab1, tab2 = st.tabs(["### 📊 Data", "### 📊 Metrics"])
 
-    # Display metrics at the bottom
-    display_metrics(st.session_state.interview_data)
+    with tab1:
+        # Display the table of interview data on the main page
+        st.write("### 📊 Data")
+        st.dataframe(st.session_state.interview_data.style.apply(lambda x: ['background-color: rgba(152, 251, 152, 0.3)' if x.Status == 'Cleared' else 'background-color: rgba(255, 192, 203, 0.3)' if x.Status == 'Rejected' else 'background-color: None' for i in x], axis=1))
+        with st.expander("See explanation"):
+            st.write("Above Table provides the details of the interviews.")
+
+    with tab2:
+        # Display metrics at the bottom
+        display_metrics(st.session_state.interview_data)
 
     # Display options in the sidebar
     clear_data()
