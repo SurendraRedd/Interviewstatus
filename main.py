@@ -31,8 +31,8 @@ def interview_form():
             "Interviewer Name": [interviewer_name],
             "Date of Interview": [interview_date],
             "Round": [interview_round],
-            "Interview Questions": [", ".join(questions)],
-            "Interview Answers": [", ".join(answers)]
+            "Interview Questions": ["\n".join(questions)],
+            "Interview Answers": ["\n".join(answers)]
         })
         st.sidebar.success("👍 Interview details added successfully!")
         clear_form()
