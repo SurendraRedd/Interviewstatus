@@ -111,7 +111,7 @@ def main():
 
     # Display the table of interview data on the main page
     st.write("### 📊 Data")
-    st.dataframe(st.session_state.interview_data)
+    st.dataframe(st.session_state.interview_data.style.apply(lambda x: ['background-color: green' if x.Status == 'Cleared' else 'background-color: red' if x.Status == 'Rejected' else 'background-color: None' for i in x], axis=1))
 
     # Display metrics at the bottom
     display_metrics(st.session_state.interview_data)
