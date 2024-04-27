@@ -57,7 +57,7 @@ def load_data_from_csv():
 
 # Function to display metrics at the bottom
 def display_metrics(interview_data):
-    st.write("---")
+    #st.write("---")
     st.write("### 📊 Metrics")
 
     total_entries = len(interview_data)
