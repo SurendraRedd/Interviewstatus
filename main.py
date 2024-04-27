@@ -44,7 +44,9 @@ def clear_form():
 
 # Function to save interview data to a CSV file
 def save_data_to_csv(data):
-    data.to_csv("interview_data.csv", index=False)
+    existing_data = load_data_from_csv()
+    updated_data = pd.concat([existing_data, data], ignore_index=True)
+    updated_data.to_csv("interview_data.csv", index=False)
 
 # Function to load interview data from a CSV file
 def load_data_from_csv():
