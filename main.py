@@ -4,7 +4,7 @@ import plotly.express as px
 
 # Function to create and display the form in the sidebar
 def interview_form():
-    st.sidebar.write("### 📝 Fill the candidate details")
+    st.sidebar.write("### 📝 Details")
 
     name = st.sidebar.text_input("👤 Name")
     position = st.sidebar.selectbox("💼 Position", ["...","Cloud Engineer", "Sr Cloud Engineer"])
@@ -34,7 +34,7 @@ def interview_form():
             "Interview Questions": ["\n".join(questions)],
             "Interview Answers": ["\n".join(answers)]
         })
-        st.sidebar.success("👍 Interview details added successfully!")
+        st.sidebar.success("👍 Details added successfully!")
         clear_form()
         return new_entry
 
@@ -90,7 +90,7 @@ def download_data(interview_data):
 def main():
     st.set_page_config(layout="wide")  # Set wide mode
 
-    st.sidebar.title("📋 Interview Status")
+    st.sidebar.title("📋 Interview")
     st.sidebar.image("https://img.freepik.com/free-vector/job-interview-conversation_74855-7566.jpg", use_column_width=True)
     # About section
     st.sidebar.write("---")
@@ -110,7 +110,7 @@ def main():
         save_data_to_csv(new_entry)
 
     # Display the table of interview data on the main page
-    st.write("### 📊 Interview Data")
+    st.write("### 📊 Data")
     st.dataframe(st.session_state.interview_data)
 
     # Display metrics at the bottom
