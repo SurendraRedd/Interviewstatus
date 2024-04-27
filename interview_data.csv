@@ -1,1 +1,29 @@
 Name,Position,Status,Interviewer Name,Date of Interview,Round,Interview Questions,Interview Answers
+Subodh Agarwal,Cloud Engineer,Cleared,Surendra Reddy,2024-04-27,1,"Azure Cloud
+Terraform (IaC)
+Programming – Python, PowerShell
+Others (Docker, Kubernetes, Flask frameworks)","Have hands on experience and good knowledge on the Azure Resources includes AKS, VMSS, Keyvault, Networking (VNET, Peering, SNET, NSG), ARM Templates
+Working knowledge and hands on experience in terraform, modules and hands experience in deploying it in Azure cloud.
+Able to explain the python concepts and able to write the python program,
+Has good working experience in Docker, Kuberenetes and Flask Framework"
+Vaibhav Saxena,Cloud Engineer,Cleared,Surendra Reddy,2024-04-27,1,"Azure Cloud
+Terraform (IaC)
+Programming – Python
+Others (Docker, Kubernetes, Ansible, bash, Azure Devops)","Have hands on experience and good knowledge on the Azure Resources includes AKS, Keyvault, Networking (VNET, Peering, SNET, NSG)
+Working knowledge and hands on experience in terraform, modules and hands experience in deploying it in Azure cloud. 
+Able to explain the python concepts and able to write the python program, 
+Have good working experience in Docker, Kuberenetes, Ansible playbooks & Azure DevOps"
+Pandipati Vishnucharan,Cloud Engineer,Rejected,Surendra Reddy,2024-04-27,1,"Azure Cloud
+Terraform (IaC)
+Programming – Python
+Others (Docker, Kubernetes, Ansible, bash, Azure Devops)","Have good knowledge on the Azure Resources and cloud
+No hands on experience in terraform, concepts and deploying it them in cloud etc
+Unable to explain the python concepts and write the basic python program,
+Some knowledge and working experience in Docker, Kuberenetes"
+Roshan Singh,Cloud Engineer,Rejected,Surendra Reddy,2024-04-27,1,"Azure Cloud
+Terraform (IaC)
+Programming – Python
+Others (Docker, Kubernetes, Ansible, bash, Azure Devops)","Have good knowledge on the Azure Resources and cloud
+No hands on experience in terraform, concepts and deploying it them in cloud etc
+Unable to explain the python concepts and write the basic python program,
+Some knowledge and working experience in Docker, Kuberenetes"
