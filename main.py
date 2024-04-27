@@ -113,6 +113,7 @@ def main():
     st.write("### 📊 Data")
     
     st.dataframe(st.session_state.interview_data.style.apply(lambda x: ['background-color: rgba(152, 251, 152, 0.3)' if x.Status == 'Cleared' else 'background-color: rgba(255, 192, 203, 0.3)' if x.Status == 'Rejected' else 'background-color: None' for i in x], axis=1))
+    edited_df = st.data_editor(st.dataframe(st.session_state.interview_data.style.apply(lambda x: ['background-color: rgba(152, 251, 152, 0.3)' if x.Status == 'Cleared' else 'background-color: rgba(255, 192, 203, 0.3)' if x.Status == 'Rejected' else 'background-color: None' for i in x], axis=1)), num_rows="dynamic")
 
     # Display metrics at the bottom
     display_metrics(st.session_state.interview_data)
