@@ -58,7 +58,7 @@ def load_data_from_csv():
 # Function to display metrics at the bottom
 def display_metrics(interview_data):
     st.write("---")
-    st.write("### 📊 Metrics")
+    #st.write("### 📊 Metrics")
 
     total_entries = len(interview_data)
     cleared_candidates = interview_data[interview_data['Status'] == 'Cleared']
@@ -113,10 +113,10 @@ def main():
 
     with tab1:
         # Display the table of interview data on the main page
-        st.write("### 📊 Data")
+        #st.write("### 📊 Data")
         st.dataframe(st.session_state.interview_data.style.apply(lambda x: ['background-color: rgba(152, 251, 152, 0.3)' if x.Status == 'Cleared' else 'background-color: rgba(255, 192, 203, 0.3)' if x.Status == 'Rejected' else 'background-color: None' for i in x], axis=1))
-        with st.expander("See explanation"):
-            st.write("Above Table provides the details of the interviews.")
+        #with st.expander("See explanation"):
+            #st.write("Above Table provides the details of the interviews.")
 
     with tab2:
         # Display metrics at the bottom
