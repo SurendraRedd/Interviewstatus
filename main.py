@@ -77,8 +77,9 @@ def display_metrics(interview_data):
 
 # Function to clear interview data
 def clear_data():
-    st.session_state.interview_data = pd.DataFrame(columns=["Name", "Position", "Status", "Interviewer Name", "Date of Interview", "Round", "Interview Questions", "Interview Answers"])
-    save_data_to_csv(st.session_state.interview_data)
+    if st.button("🗑️ Clear Data"):
+        st.session_state.interview_data = pd.DataFrame(columns=["Name", "Position", "Status", "Interviewer Name", "Date of Interview", "Round", "Interview Questions", "Interview Answers"])
+        save_data_to_csv(st.session_state.interview_data)
 
 # Function to download interview data as CSV
 def download_data(interview_data):
@@ -106,7 +107,7 @@ def main():
     if new_entry is not None:
         # Append the new entry to the DataFrame
         st.session_state.interview_data = pd.concat([st.session_state.interview_data, new_entry], ignore_index=True)
-        save_data_to_csv(st.session_state.interview_data)
+        save_data_to_csv(new_entry)
 
     # Display the table of interview data on the main page
     st.write("### 📊 Interview Data")
