@@ -89,8 +89,8 @@ def download_data(interview_data):
 # Main function to run the Streamlit app
 def main():
     st.set_page_config(layout="wide")  # Set wide mode
-    st.title(":point_down: :blue[Interview Status Page]")
-    #st.sidebar.title("📋 Interview")
+    #st.title(":point_down: :blue[Interview Status Page]")
+    st.sidebar.title("📋 Interview Status")
     st.sidebar.image("https://img.freepik.com/free-vector/job-interview-conversation_74855-7566.jpg", use_column_width=True)
     # About section
     st.sidebar.write("---")
