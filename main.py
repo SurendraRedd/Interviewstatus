@@ -7,9 +7,9 @@ def interview_form():
     st.sidebar.write("### 📝 Details")
 
     name = st.sidebar.text_input("👤 Name")
-    position = st.sidebar.selectbox("💼 Position", ["...","Cloud Engineer", "Sr Cloud Engineer"])
-    status = st.sidebar.selectbox("📊 Status", ["...","Cleared", "Rejected", "Noshow"])
-    interviewer_name = st.sidebar.text_input("👥 Interviewer Name")
+    position = st.sidebar.selectbox("💼 Position", ["Cloud Engineer", "Sr Cloud Engineer"])
+    status = st.sidebar.selectbox("📊 Status", ["Noshow","Cleared", "Rejected"])
+    interviewer_name = st.sidebar.selectbox("👥 Interviewer Name", ["Surendra Reddy","Naveen", "Rajendra"])
     interview_date = st.sidebar.date_input("📅 Date of Interview")
     interview_round = st.sidebar.number_input("🔢 Round", min_value=1, value=1)
 
@@ -58,7 +58,7 @@ def load_data_from_csv():
 # Function to display metrics at the bottom
 def display_metrics(interview_data):
     st.write("---")
-    #st.write("### 📊 Metrics")
+    st.write("### 📊 Metrics")
 
     total_entries = len(interview_data)
     cleared_candidates = interview_data[interview_data['Status'] == 'Cleared']
@@ -109,11 +109,11 @@ def main():
         st.session_state.interview_data = pd.concat([st.session_state.interview_data, new_entry], ignore_index=True)
         save_data_to_csv(new_entry)
 
-    tab1, tab2 = st.tabs(["### 📊 Data", "### 📊 Metrics"])
+    tab1, tab2 = st.tabs(["### 👥 Candidate Details", "### 📊 Metrics"])
 
     with tab1:
         # Display the table of interview data on the main page
-        #st.write("### 📊 Data")
+        st.write("### 📊 Data")
         st.dataframe(st.session_state.interview_data.style.apply(lambda x: ['background-color: rgba(152, 251, 152, 0.3)' if x.Status == 'Cleared' else 'background-color: rgba(255, 192, 203, 0.3)' if x.Status == 'Rejected' else 'background-color: None' for i in x], axis=1))
         #with st.expander("See explanation"):
             #st.write("Above Table provides the details of the interviews.")
