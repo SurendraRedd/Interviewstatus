@@ -39,3 +39,17 @@ Srinivas,Cloud Engineer,Rejected,Naveen,2024-04-27,1,,
 Gayathri,Cloud Engineer,Cleared,Naveen,2024-04-27,1,,
 Siva Sai R,Cloud Engineer,Rejected,Naveen,2024-04-27,1,,
 Jayesh,Cloud Engineer,Rejected,Naveen,2024-04-27,1,,
+Deepak,Associate Architect,Rejected,Surendra Reddy,2024-04-26,1,"Azure Cloud & Architecture
+Terraform (IaC)
+Programming – Python, PowerShell
+Others (Docker, Kubernetes)","Candidate is have idea on the existing architecture but does not have complete understanding of it and its usage and its details.
+Some knowledge on terraform and its concepts like init, apply, plan but not involved in creating the scripts using HCL and unable to explain the basic concepts such as tfvars file usage and modules implementation for different environments.
+Some knowlede on python, shell scripting which is not sufficient on day to day activities and unable to explain the concepts of it.
+Don't have much hands on expeierince in kubernetes and its concepts"
+Madhusudhan,Associate Architect,Rejected,Surendra Reddy,2024-04-19,1,"Azure Cloud & Architecture
+Terraform (IaC)
+Programming – Python, PowerShell
+Others (Docker, Kubernetes)","Candidate is have idea on the existing architecture but does not have complete understanding of it and its usage and its details.
+Some knowledge on terraform and its concepts like init, apply, plan but not involved in creating the scripts using HCL and unable to explain the basic concepts such as tfvars file usage and modules implementation for different environments.
+In the Resume it is mentioned as Bash, Python and Typescript, Python program unable to implement the basic script and has limited workexperience in day to day activies also using the python.
+Don't have much hands on expeierince in kubernetes and its concepts"

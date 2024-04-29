@@ -1,13 +1,13 @@
 import streamlit as st
 import pandas as pd
-import plotly.express as px
+import plotly.graph_objects as go
 
 # Function to create and display the form in the sidebar
 def interview_form():
     st.sidebar.write("### 📝 Candidate Details")
 
     name = st.sidebar.text_input("👤 Name")
-    position = st.sidebar.selectbox("💼 Position", ["Cloud Engineer", "Sr Cloud Engineer"])
+    position = st.sidebar.selectbox("💼 Position", ["Cloud Engineer", "Sr Cloud Engineer", "Cloud Tester", "Sr Cloud Tester", "Architect", "Associate Architect"])
     status = st.sidebar.selectbox("📊 Status", ["Noshow","Cleared", "Rejected"])
     interviewer_name = st.sidebar.selectbox("👥 Interviewer Name", ["...","Surendra Reddy","Naveen", "Rajendra"])
     interview_date = st.sidebar.date_input("📅 Date of Interview")
@@ -57,23 +57,33 @@ def load_data_from_csv():
 
 # Function to display metrics at the bottom
 def display_metrics(interview_data):
-    #st.write("---")
     st.write("### 📊 Metrics")
 
-    total_entries = len(interview_data)
-    cleared_candidates = interview_data[interview_data['Status'] == 'Cleared']
-    rejected_candidates = interview_data[interview_data['Status'] == 'Rejected']
-    noshow_candidates = interview_data[interview_data['Status'] == 'Noshow']
+    # Extract unique positions and ensure 'Noshow' status is included in the grouped data
+    positions = interview_data['Position'].unique()
+    grouped_data = interview_data.groupby(['Position', 'Status']).size().unstack(fill_value=0)
+    grouped_data['Noshow'] = 0
 
-    # Display total entries
-    st.metric("Total Entries", total_entries)
+    # Extract counts for cleared, rejected, and no-show candidates
+    cleared_counts = [grouped_data.loc[position, 'Cleared'] for position in positions]
+    rejected_counts = [grouped_data.loc[position, 'Rejected'] for position in positions]
+    noshow_counts = [grouped_data.loc[position, 'Noshow'] for position in positions]
 
-    # Display cleared, rejected, and no-show candidates using bar chart
-    metrics_data = pd.DataFrame({
-        "Status": ["Cleared", "Rejected", "No-Show"],
-        "Count": [len(cleared_candidates), len(rejected_candidates), len(noshow_candidates)]
-    })
-    st.plotly_chart(px.bar(metrics_data, x='Status', y='Count', color='Status'), use_container_width=True)
+    # Define colors for the bars
+    colors = {'Cleared': '#4CAF50', 'Rejected': '#FFCDD2', 'No-Show': '#d3d3d3'}
+
+    # Create a stacked bar chart with custom colors
+    fig = go.Figure(data=[
+        go.Bar(name='Cleared', x=positions, y=cleared_counts, marker_color=colors['Cleared']),
+        go.Bar(name='Rejected', x=positions, y=rejected_counts, marker_color=colors['Rejected']),
+        go.Bar(name='No-Show', x=positions, y=noshow_counts, marker_color=colors['No-Show'])
+    ])
+
+    # Update layout
+    fig.update_layout(barmode='stack', xaxis_title='Position', yaxis_title='Count', title='Interview Status by Position')
+
+    # Display the chart
+    st.plotly_chart(fig)
 
 # Function to clear interview data
 def clear_data():
