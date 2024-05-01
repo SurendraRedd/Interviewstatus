@@ -1,0 +1,13 @@
+name: Keep Streamlit App Awake
+
+on:
+  schedule:
+    - cron: '0 6 * * *'  # Run every day at 6:00 AM
+
+jobs:
+  keep_alive:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Send GET request
+        run: curl -sSf https://interviewstatus.streamlit.app/
