@@ -53,3 +53,18 @@ Others (Docker, Kubernetes)","Candidate is have idea on the existing architectur
 Some knowledge on terraform and its concepts like init, apply, plan but not involved in creating the scripts using HCL and unable to explain the basic concepts such as tfvars file usage and modules implementation for different environments.
 In the Resume it is mentioned as Bash, Python and Typescript, Python program unable to implement the basic script and has limited workexperience in day to day activies also using the python.
 Don't have much hands on expeierince in kubernetes and its concepts"
+Muruganandam,Cloud Engineer,Rejected,Surendra Reddy,2024-05-01,2,"Azure Cloud
+Terraform (IaC)
+Programming – Python
+Others (Docker, Kubernetes, helm)","Some understanding of the azure resources but not in depth of it and don’t have much hands on experience.
+Some basic understanding of it and few of the terraform concepts are missing and hands on experience in creating the modules, Deployment in the respective environments and infra structures.
+Unable to write the simple python program and not able to explain the logic of the code though asked google help.  
+Some knowledge on the docker, kubernetes and helm tools and knowledge of it."
+Shivam Rastogi,Cloud Engineer,Cleared,Rajendra,2024-04-27,1,,
+Shivam Rastogi,Cloud Engineer,Cleared,Surendra Reddy,2024-04-30,2,"Azure Cloud
+Terraform (IaC)
+Programming – Python
+Others (Docker, Kubernetes, helm)","Candidate has good understanding on the azure and the resources which are available in it like Azure Resource Manager (ARM) templates, PowerShell, Azure DevOps YAML pipelines, Azure Data Factory, Databricks, Storage, Application Gateways, Azure App Services, Virtual Machines, and Azure Networking
+Good understanding of the terraform and able to write the terraform modules resources including the deployments,
+Able to write the program and logic explain along with good understanding in python programming,
+Docker and kubernetes good hands on experience of it."

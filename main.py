@@ -59,31 +59,43 @@ def load_data_from_csv():
 def display_metrics(interview_data):
     st.write("### 📊 Metrics")
 
-    # Extract unique positions and ensure 'Noshow' status is included in the grouped data
+    # Extract unique positions
     positions = interview_data['Position'].unique()
-    grouped_data = interview_data.groupby(['Position', 'Status']).size().unstack(fill_value=0)
-    grouped_data['Noshow'] = 0
 
-    # Extract counts for cleared, rejected, and no-show candidates
-    cleared_counts = [grouped_data.loc[position, 'Cleared'] for position in positions]
-    rejected_counts = [grouped_data.loc[position, 'Rejected'] for position in positions]
-    noshow_counts = [grouped_data.loc[position, 'Noshow'] for position in positions]
+    # Initialize dictionaries to store counts for each metric
+    first_round_counts = {position: {'Cleared': 0, 'Rejected': 0, 'No-Show': 0} for position in positions}
+    second_round_counts = {position: {'Cleared': 0, 'Rejected': 0, 'No-Show': 0} for position in positions}
+
+    # Loop through the interview data to count candidates for each round and status
+    for _, row in interview_data.iterrows():
+        position = row['Position']
+        status = row['Status']
+        round_number = row['Round']
+        if round_number == 1:
+            first_round_counts[position][status] += 1
+        elif round_number == 2:
+            second_round_counts[position][status] += 1
 
     # Define colors for the bars
     colors = {'Cleared': '#4CAF50', 'Rejected': '#FFCDD2', 'No-Show': '#d3d3d3'}
 
-    # Create a stacked bar chart with custom colors
-    fig = go.Figure(data=[
-        go.Bar(name='Cleared', x=positions, y=cleared_counts, marker_color=colors['Cleared']),
-        go.Bar(name='Rejected', x=positions, y=rejected_counts, marker_color=colors['Rejected']),
-        go.Bar(name='No-Show', x=positions, y=noshow_counts, marker_color=colors['No-Show'])
-    ])
+    # Create separate bar charts for each round
+    fig1 = go.Figure()
+    fig2 = go.Figure()
+
+    for status, color in colors.items():
+        fig1.add_trace(go.Bar(name=status, x=positions, y=[first_round_counts[position][status] for position in positions], marker_color=color))
+        fig2.add_trace(go.Bar(name=status, x=positions, y=[second_round_counts[position][status] for position in positions], marker_color=color))
 
     # Update layout
-    fig.update_layout(barmode='stack', xaxis_title='Position', yaxis_title='Count', title='Interview Status by Position')
+    fig1.update_layout(barmode='group', xaxis_title='Position', yaxis_title='Count', title='Round 1 - Interview Status by Position')
+    fig2.update_layout(barmode='group', xaxis_title='Position', yaxis_title='Count', title='Round 2 - Interview Status by Position')
 
-    # Display the chart
-    st.plotly_chart(fig)
+    # Display the charts
+    st.plotly_chart(fig1)
+    st.plotly_chart(fig2)
+
+
 
 # Function to clear interview data
 def clear_data():
@@ -99,6 +111,11 @@ def download_data(interview_data):
 # Main function to run the Streamlit app
 def main():
     st.set_page_config(layout="wide")  # Set wide mode
+    hide_footer_style = """
+    <style>
+    .reportview-container .main footer {visibility: hidden;}    
+    """
+    st.markdown(hide_footer_style, unsafe_allow_html=True)
     #st.title(":point_down: :blue[Interview Status Page]")
     st.sidebar.title("📋 Interview Status")
     st.sidebar.image("https://img.freepik.com/free-vector/job-interview-conversation_74855-7566.jpg", use_column_width=True)
