@@ -1,3 +1,5 @@
+[![Keep Streamlit App Awake](https://github.com/SurendraRedd/Interviewstatus/actions/workflows/keep_alive.yaml/badge.svg?branch=main)](https://github.com/SurendraRedd/Interviewstatus/actions/workflows/keep_alive.yaml)
+
 # Interview Status Tool
 
 The Interview Status Tool is a Streamlit web application designed to help manage and track the status of candidates during the interview process. It provides a user-friendly interface for adding, viewing, and analyzing interview data.
