@@ -2,6 +2,8 @@ import streamlit as st
 import pandas as pd
 import plotly.graph_objects as go
 
+from streamlit_vizzu import VizzuChart, Data, Config, Style
+
 # Function to create and display the form in the sidebar
 def interview_form():
     st.sidebar.write("### 📝 Candidate Details")
@@ -108,6 +110,135 @@ def download_data(interview_data):
     if st.button("💾 Download Data"):
         st.download_button(label="Download CSV", data=interview_data.to_csv(index=False), file_name="interview_data.csv", mime="text/csv")
 
+def graph_heatmap():
+    d_types = {
+    "Name": str,
+    "Position": str,
+    "Status": str,
+    "Interviewer Name": str,
+    "Date of Interview": str,
+    "Round": str,
+    "Interview Questions": str,
+    "Interview Answers": str,
+    }
+    df = pd.read_csv("interview_data.csv", dtype=d_types)
+    data = Data()
+    data.add_df(df)
+
+    chart = VizzuChart()
+    chart.feature("tooltip", True)
+    chart.animate(data)
+
+    chart.animate(
+        Data.filter(
+            "(record['Position'] == 'Cloud Engineer'||record['Position'] == 'Associate Architect') && (record['Status'] == 'Cleared'||record['Status'] == 'Rejected')"
+        ),
+        Config(
+            {
+                "coordSystem": "cartesian",
+                "geometry": "rectangle",
+                "x": "Round",
+                "y": {"set": "Status", "range": {"min": "auto", "max": "auto"}},
+                "color": "count()",
+                "lightness": None,
+                "size": None,
+                "noop": None,
+                "split": False,
+                "align": "none",
+                "orientation": "horizontal",
+                "label": None,
+                "sort": "byValue",
+            }
+        ),
+        Style(
+            {
+                "plot": {
+                    "yAxis": {"label": {"numberScale": "shortScaleSymbolUS"}},
+                    "xAxis": {"label": {"numberScale": "shortScaleSymbolUS"}},
+                    "marker": {
+                        "label": {
+                            "numberFormat": "prefixed",
+                            "maxFractionDigits": "1",
+                            "numberScale": "shortScaleSymbolUS",
+                        },
+                        "rectangleSpacing": 0,
+                        "circleMinRadius": 0.005,
+                        "borderOpacity": 1,
+                        "colorPalette": "#4171cd",
+                    },
+                }
+            }
+        ),
+    )
+
+    chart.show()
+
+def graph_stacked_chart():
+    d1_types = {
+    "Name": str,
+    "Position": str,
+    "Status": str,
+    "Interviewer Name": str,
+    "Date of Interview": str,
+    "Round": str,
+    "Interview Questions": str,
+    "Interview Answers": str,
+    }
+    df1 = pd.read_csv("interview_data.csv", dtype=d1_types)
+    data1 = Data()
+    data1.add_df(df1)
+
+    chart1 = VizzuChart(key="stacked_chart")
+    chart1.feature("tooltip", True)
+    chart1.animate(data1)
+
+    chart1.animate(
+        Data.filter(
+            "(record['Position'] == 'Cloud Engineer'||record['Position'] == 'Associate Architect') && (record['Status'] == 'Cleared'||record['Status'] == 'Rejected')"
+        ),
+        Config(
+            {
+                "coordSystem": "cartesian",
+                "geometry": "rectangle",
+                "x": "Round",
+                "y": {
+                    "set": ["Status", "count()"],
+                    "range": {"min": "auto", "max": "auto"},
+                },
+                "color": "Status",
+                "lightness": None,
+                "size": None,
+                "noop": None,
+                "split": False,
+                "align": "stretch",
+                "orientation": "horizontal",
+                "label": None,
+                "sort": "byValue",
+            }
+        ),
+        Style(
+            {
+                "plot": {
+                    "yAxis": {"label": {"numberScale": "shortScaleSymbolUS"}},
+                    "xAxis": {"label": {"numberScale": "shortScaleSymbolUS"}},
+                    "marker": {
+                        "label": {
+                            "numberFormat": "prefixed",
+                            "maxFractionDigits": "1",
+                            "numberScale": "shortScaleSymbolUS",
+                        },
+                        "rectangleSpacing": None,
+                        "circleMinRadius": 0.005,
+                        "borderOpacity": 1,
+                        "colorPalette": "#03ae71 #f4941b #f4c204 #d49664 #f25456 #9e67ab #bca604 #846e1c #fc763c #b462ac #f492fc #bc4a94 #9c7ef4 #9c52b4 #6ca2fc #5c6ebc #7c868c #ac968c #4c7450 #ac7a4c #7cae54 #4c7450 #9c1a6c #ac3e94 #b41204",
+                    },
+                }
+            }
+        ),
+    )
+
+    chart1.show()
+
 # Main function to run the Streamlit app
 def main():
     st.set_page_config(layout="wide")  # Set wide mode
@@ -136,7 +267,7 @@ def main():
         st.session_state.interview_data = pd.concat([st.session_state.interview_data, new_entry], ignore_index=True)
         save_data_to_csv(new_entry)
 
-    tab1, tab2 = st.tabs(["### 👥 Candidate Details", "### 📊 Metrics"])
+    tab1, tab2, tab3 = st.tabs(["### 👥 Candidate Details", "### 📊 Metrics", "### 📈 Graphs"])
 
     with tab1:
         # Display the table of interview data on the main page
@@ -149,9 +280,20 @@ def main():
         # Display metrics at the bottom
         display_metrics(st.session_state.interview_data)
 
+    with tab3:
+        col1,col2 = st.columns(2)
+        
+        with col1:
+            graph_heatmap()
+
+        with col2:
+            graph_stacked_chart()
+
     # Display options in the sidebar
     clear_data()
     download_data(st.session_state.interview_data)
+
+    
 
 if __name__ == "__main__":
     main()
