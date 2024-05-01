@@ -110,6 +110,7 @@ def download_data(interview_data):
     if st.button("💾 Download Data"):
         st.download_button(label="Download CSV", data=interview_data.to_csv(index=False), file_name="interview_data.csv", mime="text/csv")
 
+# graph heatmap
 def graph_heatmap():
     d_types = {
     "Name": str,
@@ -146,7 +147,7 @@ def graph_heatmap():
                 "split": False,
                 "align": "none",
                 "orientation": "horizontal",
-                "label": None,
+                "label": "Status",
                 "sort": "byValue",
             }
         ),
@@ -173,6 +174,7 @@ def graph_heatmap():
 
     chart.show()
 
+# Stacked Chart
 def graph_stacked_chart():
     d1_types = {
     "Name": str,
@@ -212,7 +214,7 @@ def graph_stacked_chart():
                 "split": False,
                 "align": "stretch",
                 "orientation": "horizontal",
-                "label": None,
+                "label": "Status",
                 "sort": "byValue",
             }
         ),
