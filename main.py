@@ -100,10 +100,10 @@ def display_metrics(interview_data):
 
 
 # Function to clear interview data
-def clear_data():
+""" def clear_data():
     if st.button("🗑️ Clear Data", key="clear_button"):
         st.session_state.interview_data = pd.DataFrame(columns=["Name", "Position", "Status", "Interviewer Name", "Date of Interview", "Round", "Interview Questions", "Interview Answers"])
-        save_data_to_csv(st.session_state.interview_data)
+        save_data_to_csv(st.session_state.interview_data) """
 
 # Function to download interview data as CSV
 def download_data(interview_data):
