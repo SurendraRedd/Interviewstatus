@@ -269,7 +269,8 @@ def main():
         st.session_state.interview_data = pd.concat([st.session_state.interview_data, new_entry], ignore_index=True)
         save_data_to_csv(new_entry)
 
-    tab1, tab2, tab3 = st.tabs(["### 👥 Candidate Details", "### 📊 Metrics", "### 📈 Graphs"])
+    #tab1, tab2, tab3 = st.tabs(["### 👥 Candidate Details", "### 📊 Metrics", "### 📈 Graphs"])
+    tab1, tab2 = st.tabs(["### 👥 Candidate Details", "### 📊 Metrics"])
 
     with tab1:
         # Display the table of interview data on the main page
@@ -282,14 +283,14 @@ def main():
         # Display metrics at the bottom
         display_metrics(st.session_state.interview_data)
 
-    with tab3:
-        col1,col2 = st.columns(2)
+    # with tab3:
+    #     col1,col2 = st.columns(2)
         
-        with col1:
-            graph_heatmap()
+    #     with col1:
+    #         graph_heatmap()
 
-        with col2:
-            graph_stacked_chart()
+    #     with col2:
+    #         graph_stacked_chart()
 
     # Display options in the sidebar
     #clear_data()
