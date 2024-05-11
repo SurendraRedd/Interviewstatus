@@ -292,7 +292,7 @@ def main():
             graph_stacked_chart()
 
     # Display options in the sidebar
-    clear_data()
+    #clear_data()
     download_data(st.session_state.interview_data)
 
     
