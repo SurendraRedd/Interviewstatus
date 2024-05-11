@@ -22,7 +22,7 @@ def interview_form():
         answers = [st.text_input(f"💬 Answer {i+1}") for i in range(num_questions)]
 
     submitted = st.sidebar.button("✅ Submit")
-    cleared = st.sidebar.button("🗑️ Clear Data")
+    #cleared = st.sidebar.button("🗑️ Clear Data")
     
     if submitted:
         # Store the input data in a DataFrame
@@ -37,7 +37,7 @@ def interview_form():
             "Interview Answers": ["\n".join(answers)]
         })
         st.sidebar.success("👍 Details added successfully!")
-        clear_form()
+        #clear_form()
         return new_entry
 
 # Function to clear the form data
