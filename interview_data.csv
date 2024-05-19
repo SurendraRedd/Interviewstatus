@@ -104,3 +104,10 @@ Good understanding in terraform and concept and hands one experience of it.
 Good understanding of python concepts, and hand on experience in python code writing & bash scripting as well.
 Kubernetes -> Good understanding and work experience of it. pipelines and helm -> Good understanding and work experieince of it."
 Prakash Sharma,Sr Cloud Engineer,Cleared,Chetan,2024-05-11,1,Technical,"Good Hands-on IAC,  docker, Kubernetes, Helm, and Observability stack. New learner for Python but coding concepts are clear "
+Prakash Sharma,Sr Cloud Engineer,Cleared,Surendra Reddy,2024-05-15,2,"Cloud -> Azure or AWS 
+Terraform (IaC)
+Programming – Python, Bash, Powershell
+Others (Docker, Kubernetes, helm, Pipelines)","Candidate has more hands on experience in AWS Resources including EC2, EKS, MSK, Lambda, RDS, S3, IAM, VPC and ECR Also understanding in AZURE and its resources.
+Good understanding and hands on experience in using the terraform and its concepts like modules, registries and HCL syntax and deploying them using the pipelines as well.
+Python basic concepts are clear and have the hands on experience able to write the program and explain the logic.
+Have hands on work experience in Anisble playbooks creation, github actions, azure pipelines and Observability as open source and using third party applications like datadog etc.  Used gitops strategy like argocd and argoworkflows to deploy the applications.  Have hands on experience using the helm deployments."
