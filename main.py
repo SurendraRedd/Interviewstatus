@@ -258,7 +258,8 @@ def main():
     # About section
     st.sidebar.write("---")
 
-    st.header("🔌Interview Status", divider="violet")
+    st.header("👥 Interview Details Application ", divider="violet")
+    st.write("---")
 
     # Load interview data
     interview_data = load_data_from_csv()
