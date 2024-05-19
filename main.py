@@ -273,7 +273,7 @@ def main():
         save_data_to_csv(new_entry)
 
     #tab1, tab2, tab3 = st.tabs(["### 👥 Candidate Details", "### 📊 Metrics", "### 📈 Graphs"])
-    tab1, tab2 = st.tabs(["### 👥 Candidate Details", "### 📊 Results"])
+    tab1, tab2, tab3 = st.tabs(["### 👥 Candidate Details", "### 📊 Results","### 📈 More Visualization"])
 
     with tab1:
         # Display the table of interview data on the main page
@@ -287,7 +287,12 @@ def main():
     with tab2:
         # Display metrics at the bottom
         display_metrics(st.session_state.interview_data)
+       
 
+    # You should cache your pygwalker renderer, if you don't want your memory to explode
+
+
+    with tab3:
         @st.cache_resource
         def get_pyg_renderer() -> "StreamlitRenderer":
             df = pd.read_csv("./interview_data.csv")
@@ -298,12 +303,6 @@ def main():
         renderer = get_pyg_renderer()
 
         renderer.explorer()
-
-    # You should cache your pygwalker renderer, if you don't want your memory to explode
-
-
-    # with tab3:
-    #     col1,col2 = st.columns(2)
         
     #     with col1:
     #         graph_heatmap()
