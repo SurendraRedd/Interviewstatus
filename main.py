@@ -271,7 +271,7 @@ def main():
         save_data_to_csv(new_entry)
 
     #tab1, tab2, tab3 = st.tabs(["### 👥 Candidate Details", "### 📊 Metrics", "### 📈 Graphs"])
-    tab1, tab2 = st.tabs(["### 👥 Candidate Details", "### 📊 Metrics"])
+    tab1, tab2 = st.tabs(["### 👥 Candidate Details", "### 📊 Results"])
 
     with tab1:
         # Display the table of interview data on the main page
