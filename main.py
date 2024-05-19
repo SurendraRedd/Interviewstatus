@@ -1,6 +1,8 @@
+from pygwalker.api.streamlit import StreamlitRenderer
 import streamlit as st
 import pandas as pd
 import plotly.graph_objects as go
+
 
 from streamlit_vizzu import VizzuChart, Data, Config, Style
 
@@ -284,6 +286,18 @@ def main():
     with tab2:
         # Display metrics at the bottom
         display_metrics(st.session_state.interview_data)
+
+    # You should cache your pygwalker renderer, if you don't want your memory to explode
+@st.cache_resource
+def get_pyg_renderer() -> "StreamlitRenderer":
+    df = pd.read_csv("./interview_data.csv")
+    # If you want to use feature of saving chart config, set `spec_io_mode="rw"`
+    return StreamlitRenderer(df, spec="./gw_config.json", spec_io_mode="rw")
+
+
+renderer = get_pyg_renderer()
+
+renderer.explorer()
 
     # with tab3:
     #     col1,col2 = st.columns(2)
