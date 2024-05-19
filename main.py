@@ -42,6 +42,7 @@ def interview_form():
 
 # Function to clear the form data
 def clear_form():
+    st.session_state.interview_data = pd.DataFrame(columns=["Name", "Position", "Status", "Interviewer Name", "Date of Interview", "Round", "Interview Questions", "Interview Answers"])
     st.session_state.form_data = {}
 
 # Function to save interview data to a CSV file
@@ -59,7 +60,7 @@ def load_data_from_csv():
 
 # Function to display metrics at the bottom
 def display_metrics(interview_data):
-    st.write("### 📊 Metrics")
+    st.write("### 📊 Results")
 
     # Extract unique positions
     positions = interview_data['Position'].unique()
