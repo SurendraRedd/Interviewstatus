@@ -3,7 +3,6 @@ import streamlit as st
 import pandas as pd
 import plotly.graph_objects as go
 
-
 from streamlit_vizzu import VizzuChart, Data, Config, Style
 
 # Function to create and display the form in the sidebar
@@ -68,8 +67,8 @@ def display_metrics(interview_data):
     positions = interview_data['Position'].unique()
 
     # Initialize dictionaries to store counts for each metric
-    first_round_counts = {position: {'Cleared': 0, 'Rejected': 0, 'No-Show': 0} for position in positions}
-    second_round_counts = {position: {'Cleared': 0, 'Rejected': 0, 'No-Show': 0} for position in positions}
+    first_round_counts = {position: {'Cleared': 0, 'Rejected': 0, 'Noshow': 0} for position in positions}
+    second_round_counts = {position: {'Cleared': 0, 'Rejected': 0, 'Noshow': 0} for position in positions}
 
     # Loop through the interview data to count candidates for each round and status
     for _, row in interview_data.iterrows():
@@ -82,7 +81,7 @@ def display_metrics(interview_data):
             second_round_counts[position][status] += 1
 
     # Define colors for the bars
-    colors = {'Cleared': '#4CAF50', 'Rejected': '#FFCDD2', 'No-Show': '#d3d3d3'}
+    colors = {'Cleared': '#4CAF50', 'Rejected': '#FFCDD2', 'Noshow': '#FF0000'}
 
     # Create separate bar charts for each round
     fig1 = go.Figure()
@@ -100,14 +99,6 @@ def display_metrics(interview_data):
     st.plotly_chart(fig1)
     st.plotly_chart(fig2)
 
-
-
-# # Function to clear interview data
-# """ def clear_data():
-#     if st.button("🗑️ Clear Data", key="clear_button"):
-#         st.session_state.interview_data = pd.DataFrame(columns=["Name", "Position", "Status", "Interviewer Name", "Date of Interview", "Round", "Interview Questions", "Interview Answers"])
-#         save_data_to_csv(st.session_state.interview_data) """
-
 # Function to download interview data as CSV
 def download_data(interview_data):
     if st.button("💾 Download Data"):
@@ -116,14 +107,14 @@ def download_data(interview_data):
 # graph heatmap
 def graph_heatmap():
     d_types = {
-    "Name": str,
-    "Position": str,
-    "Status": str,
-    "Interviewer Name": str,
-    "Date of Interview": str,
-    "Round": str,
-    "Interview Questions": str,
-    "Interview Answers": str,
+        "Name": str,
+        "Position": str,
+        "Status": str,
+        "Interviewer Name": str,
+        "Date of Interview": str,
+        "Round": str,
+        "Interview Questions": str,
+        "Interview Answers": str,
     }
     df = pd.read_csv("interview_data.csv", dtype=d_types)
     data = Data()
@@ -180,14 +171,14 @@ def graph_heatmap():
 # Stacked Chart
 def graph_stacked_chart():
     d1_types = {
-    "Name": str,
-    "Position": str,
-    "Status": str,
-    "Interviewer Name": str,
-    "Date of Interview": str,
-    "Round": str,
-    "Interview Questions": str,
-    "Interview Answers": str,
+        "Name": str,
+        "Position": str,
+        "Status": str,
+        "Interviewer Name": str,
+        "Date of Interview": str,
+        "Round": str,
+        "Interview Questions": str,
+        "Interview Answers": str,
     }
     df1 = pd.read_csv("interview_data.csv", dtype=d1_types)
     data1 = Data()
@@ -260,7 +251,6 @@ def main():
 
     st.header("👥 Interview Details Application ", divider="violet")
     
-
     # Load interview data
     interview_data = load_data_from_csv()
 
@@ -275,25 +265,20 @@ def main():
         st.session_state.interview_data = pd.concat([st.session_state.interview_data, new_entry], ignore_index=True)
         save_data_to_csv(new_entry)
 
-    #tab1, tab2, tab3 = st.tabs(["### 👥 Candidate Details", "### 📊 Metrics", "### 📈 Graphs"])
-    tab1, tab2, tab3 = st.tabs(["### 👥 Candidate Details", "### 📊 Results","### 📈 More Visualization"])
+    # Tabs for different sections
+    tab1, tab2, tab3 = st.tabs(["### 👥 Candidate Details", "### 📊 Results", "### 📈 More Visualization"])
 
     with tab1:
         # Display the table of interview data on the main page
         st.write("### 📊 Data")
         st.dataframe(st.session_state.interview_data.style.apply(lambda x: ['background-color: rgba(152, 251, 152, 0.3)' if x.Status == 'Cleared' else 'background-color: rgba(255, 192, 203, 0.3)' if x.Status == 'Rejected' else 'background-color: None' for i in x], axis=1))
-        #with st.expander("See explanation"):
-            #st.write("Above Table provides the details of the interviews.")
+        # with st.expander("See explanation"):
+        #     st.write("Above Table provides the details of the interviews.")
         download_data(st.session_state.interview_data)
-
 
     with tab2:
         # Display metrics at the bottom
         display_metrics(st.session_state.interview_data)
-       
-
-    # You should cache your pygwalker renderer, if you don't want your memory to explode
-
 
     with tab3:
         @st.cache_resource
@@ -302,21 +287,8 @@ def main():
             # If you want to use feature of saving chart config, set `spec_io_mode="rw"`
             return StreamlitRenderer(df, spec="./gw_config.json", spec_io_mode="rw")
 
-
         renderer = get_pyg_renderer()
-
         renderer.explorer()
-        
-    #     with col1:
-    #         graph_heatmap()
-
-    #     with col2:
-    #         graph_stacked_chart()
-
-    # Display options in the sidebar
-    #clear_data()   
-
-    
 
 if __name__ == "__main__":
     main()
