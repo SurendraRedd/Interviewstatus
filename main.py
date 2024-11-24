@@ -249,7 +249,7 @@ def main():
     # About section
     st.sidebar.write("---")
 
-    st.header("👥 Interview Details Application ", divider="violet")
+    st.header("👥 Platform Team Hiring Details ", divider="violet")
     
     # Load interview data
     interview_data = load_data_from_csv()
@@ -266,7 +266,8 @@ def main():
         save_data_to_csv(new_entry)
 
     # Tabs for different sections
-    tab1, tab2, tab3 = st.tabs(["### 👥 Candidate Details", "### 📊 Results", "### 📈 More Visualization"])
+    #tab1, tab2, tab3 = st.tabs(["### 👥 Candidate Details", "### 📊 Results", "### 📈 More Visualization"])
+    tab1, tab2 = st.tabs(["### 👥 Candidate Details", "### 📊 Results"])
 
     with tab1:
         # Display the table of interview data on the main page
@@ -280,15 +281,15 @@ def main():
         # Display metrics at the bottom
         display_metrics(st.session_state.interview_data)
 
-    with tab3:
-        @st.cache_resource
-        def get_pyg_renderer() -> "StreamlitRenderer":
-            df = pd.read_csv("./interview_data.csv")
-            # If you want to use feature of saving chart config, set `spec_io_mode="rw"`
-            return StreamlitRenderer(df, spec="./gw_config.json", spec_io_mode="rw")
+    # with tab3:
+    #     @st.cache_resource
+    #     def get_pyg_renderer() -> "StreamlitRenderer":
+    #         df = pd.read_csv("./interview_data.csv")
+    #         # If you want to use feature of saving chart config, set `spec_io_mode="rw"`
+    #         return StreamlitRenderer(df, spec="./gw_config.json", spec_io_mode="rw")
 
-        renderer = get_pyg_renderer()
-        renderer.explorer()
+    #     renderer = get_pyg_renderer()
+    #     renderer.explorer()
 
 if __name__ == "__main__":
     main()
