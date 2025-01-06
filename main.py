@@ -245,7 +245,7 @@ def main():
     st.markdown(hide_footer_style, unsafe_allow_html=True)
     #st.title(":point_down: :blue[Interview Status Page]")
     st.sidebar.title("📋 Interview Status")
-    st.sidebar.image("https://img.freepik.com/free-vector/job-interview-conversation_74855-7566.jpg", use_column_width=True)
+    st.sidebar.image("https://img.freepik.com/free-vector/job-interview-conversation_74855-7566.jpg", use_container_width=True)
     # About section
     st.sidebar.write("---")
 
